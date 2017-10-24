@@ -61,11 +61,71 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		tags.add(sportTag);
 		tags.add(javaTag);
 		firstArticle.setTags(tags);
-		Set <Article> articles = new HashSet<>();
-		articles.add(firstArticle);
-		sportTag.setArticles(articles);
+//		Set <Article> articles = new HashSet<>();
+//		articles.add(firstArticle);
+//		sportTag.setArticles(articles);
 		
 		articleRepository.save(firstArticle);
+		
+		Article secondArticle = new Article();
+		secondArticle.setAuthor("admin");
+		secondArticle.setShortDescription("This is short description of a first Article");
+		secondArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		secondArticle.setTitle("Second article");
+		secondArticle.setTime(CurrentTime.get());
+		secondArticle.setTags(tags);
+//		Set <Article> articles2 = new HashSet<>();
+//		articles2.add(secondArticle);
+//		sportTag.setArticles(articles2);
+
+		articleRepository.save(secondArticle);
+		
+		Article thirdArticle = new Article();
+		thirdArticle.setAuthor("admin");
+		thirdArticle.setShortDescription("This is short description of a first Article");
+		thirdArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		thirdArticle.setTitle("Third article");
+		thirdArticle.setTime(CurrentTime.get());
+		thirdArticle.setTags(tags);
+		articleRepository.save(thirdArticle);
+		
+		Article fourthArticle = new Article();
+		fourthArticle.setAuthor("admin");
+		fourthArticle.setShortDescription("This is short description of a first Article");
+		fourthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		fourthArticle.setTitle("Fourth article");
+		fourthArticle.setTime(CurrentTime.get());
+		fourthArticle.setTags(tags);
+		articleRepository.save(fourthArticle);
+		
+		Article fifthArticle = new Article();
+		fifthArticle.setAuthor("admin");
+		fifthArticle.setShortDescription("This is short description of a first Article");
+		fifthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		fifthArticle.setTitle("Fifth article");
+		fifthArticle.setTime(CurrentTime.get());
+		fifthArticle.setTags(tags);
+		articleRepository.save(fifthArticle);
+		
+		Article sixthArticle = new Article();
+		sixthArticle.setAuthor("admin");
+		sixthArticle.setShortDescription("This is short description of a first Article");
+		sixthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		sixthArticle.setTitle("Sixth article");
+		sixthArticle.setTime(CurrentTime.get());
+		sixthArticle.setTags(tags);
+		articleRepository.save(sixthArticle);
+		
+		
+		Article seventhArticle = new Article();
+		seventhArticle.setAuthor("admin");
+		seventhArticle.setShortDescription("This is short description of a first Article");
+		seventhArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
+		seventhArticle.setTitle("Seventh article");
+		seventhArticle.setTime(CurrentTime.get());
+		seventhArticle.setTags(tags);
+		articleRepository.save(seventhArticle);
+		
 		Comment firstComment = new Comment();
 		Comment secondComment = new Comment();
 		

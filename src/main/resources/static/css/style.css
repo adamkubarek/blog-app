@@ -10,23 +10,34 @@ footer {
 	padding: 30px 0;
 }
 
-p span {
+.tags {
 	font-size: 20px;
 	font-style: italic;
 	color: cornflowerblue;
 }
 
-.article p {
-	text-align: right;
+.custom-date {
+	color: gray;
+	font-size: 18px;
+	font-style: italic;
 }
 
-.custom-pull {
+.current-date {
 	text-align: right;
 	color: lightgray;
 }
 
-.custom-pull span {
-	color: gray;
-	font-size: 15px;
+.tags-header {
+	text-align: left;
+	font-size: 34px;
 	font-style: italic;
+	color: darkgray;
+}
+
+.custom-links {
+	font-size: 40px;
+}
+
+.extra-padding {
+	margin-bottom: 30px;
 }

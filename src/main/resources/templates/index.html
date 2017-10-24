@@ -59,88 +59,50 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           <div class="jumbotron">
-            <h1 th:text="${template}">Blog-app</h1>
+            <h1>Blog-app</h1>
             <p>Prosty przykład aplikacji bloga napisanego przy użyciu frameworka Spring.</p>
           </div>
           
           <div class="row">
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-            </div>
-            
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-            </div>
-            
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-            </div>
-            
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-            </div>
-            
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-            </div>
-            
-            <div class="col-xs-6 col-lg-6">
-              <h2>Heading</h2>
-              <p><span>Tagi : </span> tag1, tag2</p>
-              <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-              <p class="custom-pull"><span>Data dodania :</span> 21.03.2017 15:30</p>
-              <p><a class="btn btn-info" href="#" role="button">Pokaż artykuł &raquo;</a></p>
-              
-			  <ul class="pagination">
-				<li>
-					<a class="pageLink" href="#">&laquo;</a>
-				</li>
-				<li>
-					<a class="pageLink" href="#">&larr;</a>
-				</li>
-                   
-                <li><a class="pageLink" href="#">1</a></li>
-				<li><a class="pageLink" href="#">2</a></li>
-				<li><a class="pageLink" href="#">3</a></li>
-					
-				<li>
-					<a class="pageLink">&rarr;</a>
-				</li>
-				<li>
-					<a class="pageLink">&raquo;</a>
-				</li>
-			  </ul>
+            <div class="col-xs-6 col-lg-6" th:each="article : ${articles}">
+              <h2 th:text="${article.title}">Heading</h2>
+              <p class="tags">Tagi : <span th:each="tag : ${article.tags}" th:text="${tag.name}+ ' '">tag1, tag2</span> </p>
+              <p th:text="${article.shortDescription}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p class="pull-right"><span class="custom-date">Data dodania :</span> <span class="current-date" th:text="${article.time}">21.03.2017 15:30</span></p>
+              <p><a class="btn btn-primary btn-sm" href="#" role="button">Pokaż artykuł &raquo;</a></p>
             </div>
           </div>
-        </div>
+
+			<div th:if="${articles.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+				<ul class="pagination">
+					<li th:class="${articles.number == 0} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
+					</li>
+					<li th:class="${articles.number == 0} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.number})}">&larr;</a>
+					</li>
+					<li th:class="${articles.number == (page - 1)} ? 'active pointer-disabled'"
+						th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
+					</li>
+					<li th:class="${articles.number + 1 == articles.totalPages} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.number + 2})}">&rarr;</a>
+					</li>
+					<li th:class="${articles.number + 1 == articles.totalPages} ? disabled">
+						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.totalPages})}">&raquo;</a>
+					</li>
+				</ul>
+			</div>
+          </div>
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-          <div class="list-group">
-            <a href="#" class="list-group-item">Tag1</a>
-            <a href="#" class="list-group-item">Tag2</a>
-            <a href="#" class="list-group-item">Tag3</a>
-            <a href="#" class="list-group-item">Tag4</a>
-            <a href="#" class="list-group-item">Tag5</a>
+          <p class="tags-header">tagi :</p>
+          <div class="list-group" >
+	         <div class="row">
+	         	<div class="col-sm-6" th:each="tag : ${tags}">
+		            <a href="#" class="list-group-item" th:text="${tag.name}"></a>
+	         	</div>
+	         </div> 
           </div>
         </div>
       </div>
