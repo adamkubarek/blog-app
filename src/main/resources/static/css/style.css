@@ -1,0 +1,32 @@
+html, body {
+	overflow-x: hidden;
+}
+
+body {
+	padding-top: 70px;
+}
+
+footer {
+	padding: 30px 0;
+}
+
+p span {
+	font-size: 20px;
+	font-style: italic;
+	color: cornflowerblue;
+}
+
+.article p {
+	text-align: right;
+}
+
+.custom-pull {
+	text-align: right;
+	color: lightgray;
+}
+
+.custom-pull span {
+	color: gray;
+	font-size: 15px;
+	font-style: italic;
+}
