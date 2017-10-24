@@ -1,5 +1,8 @@
 package hawk.springframework.blogapp.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +29,13 @@ public class ArticleServiceImpl implements ArticleService{
 	public Page<Article> findAllPageable(Pageable pageable) {
 		return articleRepository.findAll(pageable);
 	}
-	
-	
-	
-	
+
+	@Transactional
+	@Override
+	public List <Article> findAllArticles() {
+		List <Article> articles = new ArrayList<>();
+		articleRepository.findAll().iterator().forEachRemaining(articles::add);
+		return articles;
+	}
+
 }
