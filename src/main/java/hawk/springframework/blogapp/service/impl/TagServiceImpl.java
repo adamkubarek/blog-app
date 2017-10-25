@@ -29,5 +29,10 @@ public class TagServiceImpl implements TagService {
 		tagRepository.findAll().iterator().forEachRemaining(tags::add);
 		return tags;
 	}
+
+	@Override
+	public Tag saveTag(Tag tag) {
+		return tagRepository.save(tag);
+	}
 	
 }

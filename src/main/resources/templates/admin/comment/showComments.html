@@ -25,7 +25,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 										<th>Użytkownik</th>
 										<th>Treść</th>
 										<th>Czas dodania</th>
-										<th>Edytuj</th>
 										<th>Usuń</th>
 									</tr>
 							 	</thead>
@@ -35,9 +34,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 									<td th:text="${comment.userName}">title</td>
 									<td th:text="${comment.content}">author</td>
 									<td th:text="${comment.time}">Time</td>
-									<td>
-										<a href="#" th:href="@{'/admin/comment/'+${comment.id}+'/update'}">Edytuj<span class="glyphicon glyphicon-pencil"></span></a>
-									</td>
 									<td>
 										<a href="#" th:href="@{'/admin/comment/'+${comment.id}+'/delete'}">Usuń<span class="glyphicon glyphicon-remove"></span></a>
 									</td>

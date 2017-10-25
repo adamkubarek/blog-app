@@ -40,7 +40,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		</div>
 		<div class="row">
 			<div class="col-md-2 pull-right">
-				<a href="#" th:href="@{'/admin/tag/add'}">Dodaj nowy tag<span class="glyphicon glyphicon-plus"></span></a>
+				<form th:action="@{'/admin/tag/save'}" th:object="${newTag}" method="post">
+					<input type="text" th:field="*{name}">
+					<button type="submit" class="btn btn-primary">Dodaj nowy tag<span class="glyphicon glyphicon-plus"></span></button>
+				</form>
 			</div>
 		</div>
           
