@@ -2,24 +2,31 @@ package hawk.springframework.blogapp.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import hawk.springframework.blogapp.domain.Article;
 import hawk.springframework.blogapp.domain.Tag;
+import hawk.springframework.blogapp.repository.ArticleRepository;
 import hawk.springframework.blogapp.repository.TagRepository;
 import hawk.springframework.blogapp.service.TagService;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class TagServiceImpl implements TagService {
 
 	private TagRepository tagRepository;
+	private ArticleRepository articleRepository;
 
 	@Autowired
-	public TagServiceImpl(TagRepository tagRepository) {
+	public TagServiceImpl(TagRepository tagRepository, ArticleRepository articleRepository) {
 		this.tagRepository = tagRepository;
+		this.articleRepository = articleRepository;
 	}
 
 	@Transactional
@@ -34,5 +41,24 @@ public class TagServiceImpl implements TagService {
 	public Tag saveTag(Tag tag) {
 		return tagRepository.save(tag);
 	}
-	
+
+	@Override
+	public void deleteTag(Long tagId) {
+		Optional <Tag> tagOptional = tagRepository.findById(tagId);
+		if(!tagOptional.isPresent()) {
+			log.debug("tag id = "+ tagId + " not found"); 
+		} else {
+			Tag tag = tagOptional.get();
+			log.debug("tag id " + tag.getId() + " to delete");
+			
+			for (Article article : tag.getArticles()) {
+				log.debug("detaching article id " + article.getId() + " from tag id " + tag.getId());
+				article.removeTagFromSet(tag);
+				articleRepository.save(article);
+			}
+			
+			tagRepository.deleteById(tagId);
+		}
+	}
 }
+
