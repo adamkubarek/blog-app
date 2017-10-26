@@ -41,3 +41,16 @@ footer {
 .extra-padding {
 	margin-bottom: 30px;
 }
+
+.distinguish {
+	font-weight: bold; 
+}
+
+.italic {
+	font-style: italic;
+}
+
+.textarea-comment {
+    resize: none;
+    width: 100%;
+}

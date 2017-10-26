@@ -14,6 +14,7 @@ import hawk.springframework.blogapp.domain.Comment;
 import hawk.springframework.blogapp.repository.ArticleRepository;
 import hawk.springframework.blogapp.repository.CommentRepository;
 import hawk.springframework.blogapp.service.CommentService;
+import hawk.springframework.blogapp.util.CurrentTime;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -51,6 +52,22 @@ public class CommentServiceImpl implements CommentService {
 			
 			commentRepository.delete(comment);
 			
+		}
+	}
+
+	@Transactional
+	@Override
+	public void addNewComment(Long articleId, Comment comment) {
+		Optional <Article> articleOptional = articleRepository.findById(articleId);
+		if(!articleOptional.isPresent()) {
+			log.debug("Could not add comment to article id=" + articleId + "article not found");
+		} else {
+			Article article = articleOptional.get();
+			
+			comment.setArticle(article);
+			comment.setTime(CurrentTime.get());
+			article.addNewComment(comment);
+			articleRepository.save(article); // NO NEED TO SAVE commentRepository because Article object has CascadeType.ALL
 		}
 	}
 

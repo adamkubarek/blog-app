@@ -145,5 +145,9 @@ public class Article {
 			return false;
 		return true;
 	}
+
+	public void addNewComment(Comment comment) {
+		this.comments.add(comment);
+	}
 	
 }

@@ -9,4 +9,6 @@ public interface CommentService {
 	List <Comment> getAllComments();
 
 	void deleteComment(Long commentId);
+
+	void addNewComment(Long articleId, Comment comment);
 }

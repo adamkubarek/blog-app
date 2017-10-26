@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <div th:replace="fragments/header :: header-css"/>
+  </head>
+
+  <body>
+    <div th:replace="fragments/header :: header"/>
+
+    <div class="container">
+
+		<div class="page-header">
+  			<h1 th:text="${article.title}">Example page header</h1>
+		</div>
+		
+		<div class="panel panel-warning">
+  			<div class="panel-heading" th:text="'Author: ' + ${article.author}"></div>
+  			<div class="panel-body" th:text="${article.content}"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-warning col-md-6">
+					<div class="panel-heading">Komentarze</div>
+  					<div class="panel-body">  						
+  						<div class="panel panel-info" th:each="comment : ${article.comments}">
+  							<div class="panel-heading">
+  								<p>
+  									<span class="italic">Użytkownik: </span>
+  									<span class="distinguish" th:text="${comment.userName}"></span>		
+  									<span class="pull-right"> 
+  										<span class="italic">Data dodania:</span>
+  										<span class="distinguish" th:text="${comment.time}"></span>
+  									</span>
+  								</p>
+  							</div>
+  							<div class="panel-body" th:text="${comment.content}"></div>
+						</div>
+  					</div>
+				</div>
+				<div class="col-md-1"></div>
+  				<div class="panel panel-warning col-md-5">
+  					<div class="panel-heading">Dodaj nowy komentarz</div>
+  					<div class="panel-body">
+  						<form th:action="@{'/article/'+ ${article.id} + '/addComment'}" th:object="${newComment}" method="post">
+  							<label for="userName">Użytkownik :</label>
+  							<input type="text" required="required" placeholder="Użytkownik" class="form-control" th:field="*{userName}">
+  							<textarea class="form-control textarea-comment" placeholder="Nowy komentarz..." required="required" rows="3" th:field="*{content}"></textarea>
+  							<button type="submit" class="btn btn-primary pull-right">Dodaj komentarz <span class="glyphicon glyphicon-plus"></span></button>
+  						</form>
+  					</div>
+				</div>	
+			</div>
+		</div>
+
+      <hr>
+      <footer>
+        <p>&copy; 2017 Portfolio, cele szkoleniowe.</p>     
+      </footer>
+    </div>
+  </body>
+</html>
