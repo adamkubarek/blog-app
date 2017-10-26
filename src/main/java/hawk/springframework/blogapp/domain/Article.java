@@ -44,6 +44,10 @@ public class Article {
 		this.tags.remove(tag);
 	}
 	
+	public void detachCommentFromArticle(Comment comment) {
+		this.comments.remove(comment);
+	}
+	
 	public Article() {
 	}
 

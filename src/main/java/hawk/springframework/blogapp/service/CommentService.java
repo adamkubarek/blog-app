@@ -7,4 +7,6 @@ import hawk.springframework.blogapp.domain.Comment;
 public interface CommentService {
 	
 	List <Comment> getAllComments();
+
+	void deleteComment(Long commentId);
 }

@@ -67,6 +67,12 @@ public class AdminController {
 		return "admin/comment/showComments";
 	}
 	
+	@GetMapping("/comment/{commentId}/delete")
+	public String deleteComment(@PathVariable Long commentId) {
+		commentService.deleteComment(commentId);
+		return "redirect:/admin/showComments";
+	}
+	
 	@GetMapping("/addArticle")
 	public String addArticle() {
 		return "admin/addArticle";
