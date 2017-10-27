@@ -3,25 +3,20 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   <head>
     <div th:replace="fragments/header :: header-css"/>
-	
   </head>
-
+  
   <body>
     <div th:replace="fragments/header :: header"/>
 
     <div class="container">
-		
-
 		<div class="row">
 			<div class="col-md-12">
 				<form th:action="@{'/admin/addArticle'}" th:object="${newArticle}" method="post">
+					<input type="hidden" th:field="*{id}">
 					<div class="col-md-8">
 						<input type="text" required="required" placeholder="Tytuł" class="form-control" th:field="*{title}">
-						<textarea id="editor1" name="editor1" rows="50" th:field="*{content}">&lt;p&gt;Initial value.&lt;/p&gt;</textarea>
-						    <script type="text/javascript">
-   	 							CKEDITOR.replace('editor1');
-							</script>
-						<button type="submit" class="btn btn-primary">Dodaj artykuł</button>
+						<textarea id="editor1" name="editor1" rows="50" required="required" th:field="*{content}">&lt;p&gt;Initial value.&lt;/p&gt;</textarea>
+						<button type="submit" class="btn btn-primary btn-lg">Dodaj artykuł</button>
 					</div>
 					<div class="col-md-3 pull-right">
 						<div class="panel panel-warning">
@@ -45,5 +40,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
         <p>&copy; 2017 Portfolio, cele szkoleniowe.</p>     
       </footer>
     </div>
+    
+    <script type="text/javascript">
+   	 	CKEDITOR.replace('editor1');	
+   	</script>
   </body>
 </html>

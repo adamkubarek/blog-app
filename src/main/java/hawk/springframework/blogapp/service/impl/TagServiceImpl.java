@@ -39,6 +39,8 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public Tag saveTag(Tag tag) {
+		String hashName = tag.getName();
+		tag.setName(hashName);
 		return tagRepository.save(tag);
 	}
 
@@ -59,6 +61,20 @@ public class TagServiceImpl implements TagService {
 			
 			tagRepository.deleteById(tagId);
 		}
+	}
+
+	@Override
+	public Tag findTagByName(String tagName) {
+		Optional <Tag> tagOptional = tagRepository.findByName(tagName);
+		if (!tagOptional.isPresent()) {
+			log.debug("Error tag name "+tagName+" not found");
+			throw new RuntimeException();
+		} else {
+			Tag tag = tagOptional.get();
+			return tag;
+			
+		}
+
 	}
 }
 

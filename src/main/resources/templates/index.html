@@ -13,9 +13,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
-          <p class="pull-right visible-xs">
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-          </p>
           <div class="jumbotron">
             <h1>Blog-app</h1>
             <p>Prosty przykład aplikacji bloga napisanego przy użyciu frameworka Spring.</p>
@@ -24,7 +21,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
           <div class="row">
             <div class="col-xs-6 col-lg-6" th:each="article : ${articles}">
               <h2 th:text="${article.title}">Heading</h2>
-              <p class="tags">Tagi : <span th:each="tag : ${article.tags}" th:text="${tag.name}+ ' '">tag1, tag2</span> </p>
+              <p class="tags">Tagi : <span th:each="tag : ${article.tags}" th:text="'#'+${tag.name}+ ' '">tag1, tag2</span> </p>
               <p th:utext="${article.shortDescription}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
               <p class="pull-right"><span class="custom-date">Data dodania :</span> <span class="current-date" th:text="${article.time}">21.03.2017 15:30</span></p>
               <p><a class="btn btn-primary btn-sm" th:href="@{'/showArticle/'+${article.id}}" role="button">Pokaż artykuł &raquo;</a></p>
@@ -57,8 +54,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
           <p class="tags-header">tagi :</p>
           <div class="list-group" >
 	         <div class="row">
-	         	<div class="col-sm-6" th:each="tag : ${tags}">
-		            <a href="#" class="list-group-item" th:text="${tag.name}"></a>
+	         	<div class="col-sm-12" th:each="tag : ${tags}">
+		            <a th:href="@{'/byTag/'+${tag.name}}" class="list-group-item" th:text="'#'+${tag.name}"></a>
 	         	</div>
 	         </div> 
           </div>

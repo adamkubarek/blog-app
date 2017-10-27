@@ -8,4 +8,5 @@ public interface TagService {
 	List <Tag> getAllTags();
 	Tag saveTag(Tag tag);
 	void deleteTag(Long tagId);
+	Tag findTagByName(String name);
 }

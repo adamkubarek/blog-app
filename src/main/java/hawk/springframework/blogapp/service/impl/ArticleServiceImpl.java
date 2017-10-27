@@ -41,7 +41,7 @@ public class ArticleServiceImpl implements ArticleService{
 	public Page<Article> findAllPageable(Pageable pageable) {
 		return articleRepository.findAll(pageable);
 	}
-
+	
 	@Transactional
 	@Override
 	public List <Article> findAllArticles() {
@@ -60,6 +60,11 @@ public class ArticleServiceImpl implements ArticleService{
 			// TODO exception handling
 		} else {
 			Article article = articleOptional.get();
+			Set<Long> chosenTags = new HashSet<>();
+			for (Tag tag : article.getTags()) {
+				chosenTags.add(tag.getId());
+			}
+			article.setTagsId(chosenTags);
 			return article;
 		}
 	}
@@ -83,6 +88,19 @@ public class ArticleServiceImpl implements ArticleService{
 		article.setTime(CurrentTime.get());
 		
 		articleRepository.save(article);
+	}
+
+	@Transactional
+	@Override
+	public void deleteArticle(Long articleId) {
+		Optional <Article> articleOptional = articleRepository.findById(articleId);
+		if (!articleOptional.isPresent()) {
+			log.debug("Error deleting article id="+articleId+" article does not exist");
+		} else {
+			Article articleToDelete = articleOptional.get();
+			articleRepository.delete(articleToDelete);
+		}
 		
 	}
+
 }

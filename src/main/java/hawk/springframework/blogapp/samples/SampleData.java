@@ -43,7 +43,7 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 			throw new RuntimeException("Java tag nie istnieje");
 		}
 	
-		Optional <Tag> sportTagOptional = tagRepository.findByName("Sport");
+		Optional <Tag> sportTagOptional = tagRepository.findByName("Spring");
 		if(!sportTagOptional.isPresent()) {
 			throw new RuntimeException("Sport tag nie istnieje");
 		}

@@ -13,4 +13,5 @@ public interface ArticleService {
 	List <Article> findAllArticles();
 	Article findArticleById(Long articleId);
 	void saveArticle(Article article);
+	void deleteArticle(Long articleId);
 }

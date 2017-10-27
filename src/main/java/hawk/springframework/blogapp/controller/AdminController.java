@@ -50,6 +50,20 @@ public class AdminController {
 		return "admin/article/addArticle";
 	}
 	
+	@GetMapping("/article/{articleId}/update")
+	public String updateArticle(@PathVariable Long articleId, Model model) {
+		Article articleToEdit = articleService.findArticleById(articleId);
+		model.addAttribute("newArticle", articleToEdit);
+		model.addAttribute("allTags", tagService.getAllTags());
+		return "admin/article/addArticle";
+	}
+	
+	@GetMapping("/article/{articleId}/delete")
+	public String deleteArticle(@PathVariable Long articleId) {
+		articleService.deleteArticle(articleId);
+		return "redirect:/admin/showArticles";
+	}
+	
 	@PostMapping("/addArticle")
 	public String saveArticle(@ModelAttribute("newArticle") Article article) {
 		articleService.saveArticle(article);

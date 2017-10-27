@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import hawk.springframework.blogapp.domain.Article;
 import hawk.springframework.blogapp.domain.Comment;
+import hawk.springframework.blogapp.domain.Tag;
 import hawk.springframework.blogapp.service.ArticleService;
 import hawk.springframework.blogapp.service.CommentService;
 import hawk.springframework.blogapp.service.TagService;
 import hawk.springframework.blogapp.util.Pager;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class UserController {
 	
 	private static final int BUTTONS_TO_SHOW = 5;
@@ -52,6 +55,18 @@ public class UserController {
 		model.addAttribute("selectedPageSize", evalPageSize);
 		model.addAttribute("pager", pager);
 		return "index";
+	}
+	
+	@GetMapping("/byTag/{tagName}")
+	public String mainPageByTag(@PathVariable String tagName) {
+		log.debug("All articles attached to the tag "+ tagName +"\n");
+		Tag tag = tagService.findTagByName(tagName);
+
+		for (Article article : tag.getArticles()) {
+			log.debug(article.toString());
+		}
+		
+		return "redirect:/";
 	}
 	
     @GetMapping("/login")
