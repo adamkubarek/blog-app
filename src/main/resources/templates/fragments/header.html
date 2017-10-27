@@ -11,15 +11,16 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
     <meta name="author" content="">
 
     <title>Blog-app</title>
-
+    
+	<script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
 	<link rel="stylesheet" 
 		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 		th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-			th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
-	
+			th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+			
 	<link th:href="@{/css/style.css}" rel="stylesheet"/>
 	<script type="text/javascript" th:src="@{/js/ckeditor/ckeditor.js}"></script>
 	</div>
@@ -38,7 +39,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
           </button>
           <a class="navbar-brand" th:href="@{/}">Blog-app</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav">
             <li><a th:href="@{/}">Artykuły</a></li>
           </ul>
