@@ -12,4 +12,5 @@ public interface ArticleService {
 	Page <Article> findAllPageable(Pageable pageable);
 	List <Article> findAllArticles();
 	Article findArticleById(Long articleId);
+	void saveArticle(Article article);
 }

@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Article {
@@ -36,6 +37,8 @@ public class Article {
 	joinColumns= @JoinColumn(name="article_id"),
 	inverseJoinColumns = @JoinColumn(name="tag_id"))
 	private Set<Tag> tags = new HashSet<>();
+	@Transient
+	private Set<Long> tagsId = new HashSet<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="article")
 	private List<Comment> comments = new ArrayList<>();
@@ -113,6 +116,14 @@ public class Article {
 
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
+	}
+	
+	public Set<Long> getTagsId() {
+		return tagsId;
+	}
+
+	public void setTagsId(Set<Long> tagsId) {
+		this.tagsId = tagsId;
 	}
 
 	@Override

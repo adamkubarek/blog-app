@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import hawk.springframework.blogapp.domain.Article;
 import hawk.springframework.blogapp.domain.Tag;
 import hawk.springframework.blogapp.service.ArticleService;
 import hawk.springframework.blogapp.service.CommentService;
@@ -41,6 +42,20 @@ public class AdminController {
 		return "admin/article/showArticles";
 	}
 	
+	@GetMapping("/addArticle")
+	public String addArticle(Model model) {
+		Article newArticle = new Article();
+		model.addAttribute("newArticle", newArticle);
+		model.addAttribute("allTags", tagService.getAllTags());
+		return "admin/article/addArticle";
+	}
+	
+	@PostMapping("/addArticle")
+	public String saveArticle(@ModelAttribute("newArticle") Article article) {
+		articleService.saveArticle(article);
+		return "redirect:/admin/showArticles";
+	}	
+	
 	@GetMapping("/showTags")
 	public String showTags(Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
@@ -71,10 +86,5 @@ public class AdminController {
 	public String deleteComment(@PathVariable Long commentId) {
 		commentService.deleteComment(commentId);
 		return "redirect:/admin/showComments";
-	}
-	
-	@GetMapping("/addArticle")
-	public String addArticle() {
-		return "admin/addArticle";
 	}
 }
