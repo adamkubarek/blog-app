@@ -20,13 +20,10 @@ import hawk.springframework.blogapp.service.ArticleService;
 import hawk.springframework.blogapp.service.CommentService;
 import hawk.springframework.blogapp.service.TagService;
 import hawk.springframework.blogapp.util.Pager;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 public class UserController {
 	
-	private static final int BUTTONS_TO_SHOW = 5;
 	private static final int INITIAL_PAGE = 0;
 	private static final int INITIAL_PAGE_SIZE = 6;
 	
@@ -42,31 +39,33 @@ public class UserController {
 	}
 
 	@GetMapping("/")
-	public String mainPage (@RequestParam("pageSize") Optional<Integer> pageSize,
-			@RequestParam("page") Optional <Integer> page, Model model) {
-		
+	public String mainPage (@RequestParam("page") Optional <Integer> page, Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
-		int evalPageSize = pageSize.orElse(INITIAL_PAGE_SIZE);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
 		
-		Page<Article> articles = articleService.findAllPageable(PageRequest.of(evalPage, evalPageSize));
-		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber(), BUTTONS_TO_SHOW);
+		Page<Article> articles = articleService.findAllPageable(PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
+		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber());
 		model.addAttribute("articles", articles);
-		model.addAttribute("selectedPageSize", evalPageSize);
+		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
 		model.addAttribute("pager", pager);
+		
 		return "index";
 	}
 	
 	@GetMapping("/byTag/{tagName}")
-	public String mainPageByTag(@PathVariable String tagName) {
-		log.debug("All articles attached to the tag "+ tagName +"\n");
+	public String mainPageByTag(@PathVariable String tagName, 
+			@RequestParam("page") Optional <Integer> page, Model model) {
 		Tag tag = tagService.findTagByName(tagName);
-
-		for (Article article : tag.getArticles()) {
-			log.debug(article.toString());
-		}
+		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
+		model.addAttribute("tags", tagService.getAllTags());
+		Page <Article> articles = articleService.findArticlesByTags(tag, PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
 		
-		return "redirect:/";
+		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber());
+		model.addAttribute("articles", articles);
+		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
+		model.addAttribute("pager", pager);
+
+		return "index";
 	}
 	
     @GetMapping("/login")
@@ -85,6 +84,6 @@ public class UserController {
     @PostMapping("/article/{articleId}/addComment")
     public String addNewComment(@PathVariable Long articleId, @ModelAttribute("newComment") Comment comment) {
     	commentService.addNewComment(articleId, comment);
-    	return "redirect:/showArticle/"+articleId;
+    	return "redirect:/showArticle/" + articleId;
     }
 }

@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ArticleServiceImpl implements ArticleService{
-
 	private ArticleRepository articleRepository;
 	private TagRepository tagRepository;
 
@@ -40,6 +39,14 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public Page<Article> findAllPageable(Pageable pageable) {
 		return articleRepository.findAll(pageable);
+	}
+	
+	@Transactional
+	@Override
+	public Page<Article> findArticlesByTags(Tag tag, Pageable pageable) {
+		Set<Tag> tags = new HashSet<>();
+		tags.add(tag);
+		return articleRepository.findByTags(tags, pageable);
 	}
 	
 	@Transactional
@@ -100,7 +107,5 @@ public class ArticleServiceImpl implements ArticleService{
 			Article articleToDelete = articleOptional.get();
 			articleRepository.delete(articleToDelete);
 		}
-		
 	}
-
 }

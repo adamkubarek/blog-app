@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class TagServiceImpl implements TagService {
-
 	private TagRepository tagRepository;
 	private ArticleRepository articleRepository;
 
@@ -37,6 +36,7 @@ public class TagServiceImpl implements TagService {
 		return tags;
 	}
 
+	@Transactional
 	@Override
 	public Tag saveTag(Tag tag) {
 		String hashName = tag.getName();
@@ -44,6 +44,7 @@ public class TagServiceImpl implements TagService {
 		return tagRepository.save(tag);
 	}
 
+	@Transactional
 	@Override
 	public void deleteTag(Long tagId) {
 		Optional <Tag> tagOptional = tagRepository.findById(tagId);
@@ -58,11 +59,11 @@ public class TagServiceImpl implements TagService {
 				article.removeTagFromSet(tag);
 				articleRepository.save(article);
 			}
-			
 			tagRepository.deleteById(tagId);
 		}
 	}
 
+	@Transactional
 	@Override
 	public Tag findTagByName(String tagName) {
 		Optional <Tag> tagOptional = tagRepository.findByName(tagName);
@@ -72,9 +73,7 @@ public class TagServiceImpl implements TagService {
 		} else {
 			Tag tag = tagOptional.get();
 			return tag;
-			
 		}
-
 	}
 }
 

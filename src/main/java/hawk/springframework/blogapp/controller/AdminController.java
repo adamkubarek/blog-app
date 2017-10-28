@@ -30,7 +30,6 @@ public class AdminController {
 		this.tagService = tagService;
 	}
 	
-
 	@GetMapping("/")
 	public String adminPanel() {
 		return "admin/adminPanel";

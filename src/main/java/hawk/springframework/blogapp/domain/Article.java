@@ -22,13 +22,10 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String title;
 	private String shortDescription;
-	
 	@Lob
 	private String content;
-	
 	private String author;
 	private String time;
 	
@@ -39,10 +36,13 @@ public class Article {
 	private Set<Tag> tags = new HashSet<>();
 	@Transient
 	private Set<Long> tagsId = new HashSet<>();
-	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="article")
 	private List<Comment> comments = new ArrayList<>();
-
+	
+	public void addNewComment(Comment comment) {
+		this.comments.add(comment);
+	}
+	
 	public void removeTagFromSet(Tag tag) {
 		this.tags.remove(tag);
 	}
@@ -156,9 +156,4 @@ public class Article {
 			return false;
 		return true;
 	}
-
-	public void addNewComment(Comment comment) {
-		this.comments.add(comment);
-	}
-	
 }

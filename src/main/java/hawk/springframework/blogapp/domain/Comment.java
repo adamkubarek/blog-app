@@ -12,11 +12,9 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
 	private String userName;
 	private String content;
 	private String time;
-	
 	@ManyToOne
 	private Article article;
 
@@ -92,9 +90,5 @@ public class Comment {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
-	
-	
-	
+	}	
 }

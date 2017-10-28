@@ -20,7 +20,6 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class CommentServiceImpl implements CommentService {
-
 	private CommentRepository commentRepository;
 	private ArticleRepository articleRepository;
 	
@@ -38,6 +37,7 @@ public class CommentServiceImpl implements CommentService {
 		return comments;
 	}
 
+	@Transactional
 	@Override
 	public void deleteComment(Long commentId) {
 		Optional <Comment> commentOptional = commentRepository.findById(commentId);
@@ -45,13 +45,11 @@ public class CommentServiceImpl implements CommentService {
 			log.debug("comment id="+commentId+" does not exist");
 		} else {
 			Comment comment = commentOptional.get();
-			
 			Article detachedArticle = comment.getArticle();
 			detachedArticle.detachCommentFromArticle(comment);
 			articleRepository.save(detachedArticle);
 			
 			commentRepository.delete(comment);
-			
 		}
 	}
 
@@ -70,5 +68,4 @@ public class CommentServiceImpl implements CommentService {
 			articleRepository.save(article); // NO NEED TO SAVE commentRepository because Article object has CascadeType.ALL
 		}
 	}
-
 }

@@ -11,12 +11,10 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Tag {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
 	@ManyToMany(mappedBy="tags")
 	private Set<Article> articles = new HashSet<>();
 
@@ -82,5 +80,4 @@ public class Tag {
 			return false;
 		return true;
 	}
-	
 }
