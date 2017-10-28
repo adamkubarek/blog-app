@@ -55,11 +55,12 @@ public class UserController {
 	@GetMapping("/byTag/{tagName}")
 	public String mainPageByTag(@PathVariable String tagName, 
 			@RequestParam("page") Optional <Integer> page, Model model) {
+		model.addAttribute("tags", tagService.getAllTags());
+		
 		Tag tag = tagService.findTagByName(tagName);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
-		model.addAttribute("tags", tagService.getAllTags());
-		Page <Article> articles = articleService.findArticlesByTags(tag, PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
 		
+		Page <Article> articles = articleService.findArticlesByTags(tag, PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
 		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber());
 		model.addAttribute("articles", articles);
 		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);

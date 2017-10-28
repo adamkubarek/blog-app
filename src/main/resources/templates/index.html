@@ -26,12 +26,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
             </div>
           </div>
 
-		  <div th:if="${articles.totalPages != 1}" class="form-group col-md-11 pagination-centered">
+		  <div th:if="${articles.totalPages > 0}" class="form-group col-md-11 pagination-centered">
 		  		<ul class="pagination">
-					<li th:class="${articles.number == 1} ? disabled">
+					<li>
 						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
 					</li>
-					<li th:class="${articles.number == 1} ? disabled">
+					<li>
 						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.number})}">&larr;</a>
 					</li>
 					
@@ -39,10 +39,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${page})}" th:text="${page}"></a>
 					</li>
 					
-					<li th:class="${articles.number + 1 == articles.totalPages} ? disabled">
+					<li>
 						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.number + 2})}">&rarr;</a>
 					</li>
-					<li th:class="${articles.number + 1 == articles.totalPages} ? disabled">
+					<li>
 						<a class="pageLink" th:href="@{/(pageSize=${selectedPageSize}, page=${articles.totalPages})}">&raquo;</a>
 					</li>
 				</ul>

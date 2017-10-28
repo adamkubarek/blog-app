@@ -61,29 +61,32 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		tags.add(sportTag);
 		tags.add(javaTag);
 		firstArticle.setTags(tags);
-//		Set <Article> articles = new HashSet<>();
-//		articles.add(firstArticle);
-//		sportTag.setArticles(articles);
+
 		
 		articleRepository.save(firstArticle);
 		
 		Article secondArticle = new Article();
 		secondArticle.setAuthor("admin");
-		secondArticle.setShortDescription("This is short description of a first Article");
-		secondArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
-		secondArticle.setTitle("Second article");
+		secondArticle.setContent("Speaking at the International Astronautical Congress, Elon Musk said that the first goal"
+				+ " of his SpaceX missions is to find water on other planets. He also spoke about colonising Mars. In 2022,"
+				+ " two 106-metre-tall SpaceX rockets with construction materials will go to Mars, followed by two more cargo"
+				+ " rockets in 2024. In that same year, two flights of 100 passengers each will go to Mars to build a city using"
+				+ " the cargo which will have been delivered.");
+		secondArticle.setShortDescription(secondArticle.getContent().substring(0,200)+"...");
+
+		secondArticle.setTitle("Finding Water on Other Planets");
 		secondArticle.setTime(CurrentTime.get());
 		secondArticle.setTags(tags);
-//		Set <Article> articles2 = new HashSet<>();
-//		articles2.add(secondArticle);
-//		sportTag.setArticles(articles2);
+
 
 		articleRepository.save(secondArticle);
 		
 		Article thirdArticle = new Article();
 		thirdArticle.setAuthor("admin");
+		
+		thirdArticle.setContent("This is short description of a first Article This is short description of a first Article This is"
+				+ " short description of a first Article This is short description of a first Article");
 		thirdArticle.setShortDescription("This is short description of a first Article");
-		thirdArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
 		thirdArticle.setTitle("Third article");
 		thirdArticle.setTime(CurrentTime.get());
 		thirdArticle.setTags(tags);
@@ -91,8 +94,9 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		
 		Article fourthArticle = new Article();
 		fourthArticle.setAuthor("admin");
+		fourthArticle.setContent("This is short description of a first Article This is short description of a first Article This is"
+				+ " short description of a first Article This is short description of a first Article");
 		fourthArticle.setShortDescription("This is short description of a first Article");
-		fourthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
 		fourthArticle.setTitle("Fourth article");
 		fourthArticle.setTime(CurrentTime.get());
 		fourthArticle.setTags(tags);
@@ -100,8 +104,9 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		
 		Article fifthArticle = new Article();
 		fifthArticle.setAuthor("admin");
+		fifthArticle.setContent("This is short description of a first Article This is short description of a first Article This is"
+				+ " short description of a first Article This is short description of a first Article");
 		fifthArticle.setShortDescription("This is short description of a first Article");
-		fifthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
 		fifthArticle.setTitle("Fifth article");
 		fifthArticle.setTime(CurrentTime.get());
 		fifthArticle.setTags(tags);
@@ -109,8 +114,9 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		
 		Article sixthArticle = new Article();
 		sixthArticle.setAuthor("admin");
+		sixthArticle.setContent("This is short description of a first Article This is short description of a first Article This is"
+				+ " short description of a first Article This is short description of a first Article");
 		sixthArticle.setShortDescription("This is short description of a first Article");
-		sixthArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
 		sixthArticle.setTitle("Sixth article");
 		sixthArticle.setTime(CurrentTime.get());
 		sixthArticle.setTags(tags);
@@ -119,8 +125,10 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 		
 		Article seventhArticle = new Article();
 		seventhArticle.setAuthor("admin");
+		
+		seventhArticle.setContent("This is short description of a first Article This is short description of a first Article This is"
+				+ " short description of a first Article This is short description of a first Article");
 		seventhArticle.setShortDescription("This is short description of a first Article");
-		seventhArticle.setContent("This is short description of a first Article This is short description of a first Article This is short description of a first Article This is short description of a first Article");
 		seventhArticle.setTitle("Seventh article");
 		seventhArticle.setTime(CurrentTime.get());
 		seventhArticle.setTags(tags);
