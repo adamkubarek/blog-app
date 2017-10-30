@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import hawk.springframework.blogapp.domain.Article;
 import hawk.springframework.blogapp.domain.Tag;
+import hawk.springframework.blogapp.exceptions.NotFoundException;
 import hawk.springframework.blogapp.repository.ArticleRepository;
 import hawk.springframework.blogapp.repository.TagRepository;
 import hawk.springframework.blogapp.service.ArticleService;
@@ -63,8 +64,7 @@ public class ArticleServiceImpl implements ArticleService{
 		Optional <Article> articleOptional = articleRepository.findById(articleId);
 		if (!articleOptional.isPresent()) {
 			log.debug("Article id="+ articleId+" does not exist");
-			throw new RuntimeException();
-			// TODO exception handling
+			throw new NotFoundException("Nie znaleziono artukułu o zadanym id");
 		} else {
 			Article article = articleOptional.get();
 			Set<Long> chosenTags = new HashSet<>();
@@ -103,6 +103,7 @@ public class ArticleServiceImpl implements ArticleService{
 		Optional <Article> articleOptional = articleRepository.findById(articleId);
 		if (!articleOptional.isPresent()) {
 			log.debug("Error deleting article id="+articleId+" article does not exist");
+			throw new NotFoundException("Nie znaleziono artykułu o zadanym id");
 		} else {
 			Article articleToDelete = articleOptional.get();
 			articleRepository.delete(articleToDelete);

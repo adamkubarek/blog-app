@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import hawk.springframework.blogapp.domain.Article;
 import hawk.springframework.blogapp.domain.Tag;
+import hawk.springframework.blogapp.exceptions.NotFoundException;
 import hawk.springframework.blogapp.repository.ArticleRepository;
 import hawk.springframework.blogapp.repository.TagRepository;
 import hawk.springframework.blogapp.service.TagService;
@@ -50,6 +51,7 @@ public class TagServiceImpl implements TagService {
 		Optional <Tag> tagOptional = tagRepository.findById(tagId);
 		if(!tagOptional.isPresent()) {
 			log.debug("tag id = "+ tagId + " not found"); 
+			throw new NotFoundException("Nie znaleziono tagu o zadanym id");
 		} else {
 			Tag tag = tagOptional.get();
 			log.debug("tag id " + tag.getId() + " to delete");
@@ -69,7 +71,7 @@ public class TagServiceImpl implements TagService {
 		Optional <Tag> tagOptional = tagRepository.findByName(tagName);
 		if (!tagOptional.isPresent()) {
 			log.debug("Error tag name "+tagName+" not found");
-			throw new RuntimeException();
+			throw new NotFoundException("Nie znaleziono tagu o zadanym id");
 		} else {
 			Tag tag = tagOptional.get();
 			return tag;

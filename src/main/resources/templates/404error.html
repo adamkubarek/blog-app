@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+  <head>
+    <div th:replace="fragments/header :: header-css"/>
+  </head>
+
+  <body>
+    <div th:replace="fragments/header :: header"/>
+
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-right">
+        <div class="col-xs-12 col-sm-9">
+          <div class="jumbotron">
+            <h1>Blog-app</h1>
+            <p th:text="${exception.getMessage()}"></p>
+          </div>
+          
+
+        </div>
+      </div>
+      <hr>
+      <footer>
+        <p>&copy; 2017 Portfolio, cele szkoleniowe.</p>     
+      </footer>
+   </div>
+  </body>
+</html>
