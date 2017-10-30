@@ -11,20 +11,25 @@ footer {
 }
 
 .tags {
-	font-size: 20px;
+	font-size: 18px;
 	font-style: italic;
 	color: cornflowerblue;
 }
 
+.tag-custom {
+	font-weight: bold;
+}
+
 .custom-date {
 	color: gray;
-	font-size: 18px;
 	font-style: italic;
 }
 
 .current-date {
 	text-align: right;
-	color: lightgray;
+	color: gray;
+	font-weight: bold;
+	font-style: italic;
 }
 
 .tags-header {

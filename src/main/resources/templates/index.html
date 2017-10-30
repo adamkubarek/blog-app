@@ -19,9 +19,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
           <div class="row">
             <div class="col-xs-6 col-lg-6" th:each="article : ${articles}">
               <h2 th:text="${article.title}">Header</h2>
-              <p class="tags">Tagi : <span th:each="tag : ${article.tags}" th:text="'#'+${tag.name}+ ' '"></span></p>
+              <p class="tags">Tagi : <span class="tag-custom" th:each="tag : ${article.tags}" th:text="'#'+${tag.name}+ ' '"></span></p>
               <p th:utext="${article.shortDescription}"></p>
-              <p class="pull-right"><span class="custom-date">Data dodania :</span><span class="current-date" th:text="${article.time}">21.03.2017 15:30</span></p>
+              <p class="pull-right"><span class="custom-date">Data dodania : </span><span class="current-date" th:text="${article.time}">21.03.2017 15:30</span></p>
               <p><a class="btn btn-primary btn-sm" th:href="@{'/showArticle/'+${article.id}}" role="button">Pokaż artykuł &raquo;</a></p>
             </div>
           </div>
