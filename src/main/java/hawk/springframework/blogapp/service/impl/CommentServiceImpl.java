@@ -21,8 +21,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class CommentServiceImpl implements CommentService {
-	private CommentRepository commentRepository;
-	private ArticleRepository articleRepository;
+	private final CommentRepository commentRepository;
+	private final ArticleRepository articleRepository;
 	
 	@Autowired
 	public CommentServiceImpl(CommentRepository commentRepository, ArticleRepository articleRepository) {

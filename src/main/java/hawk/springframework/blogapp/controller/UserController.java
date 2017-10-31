@@ -27,9 +27,9 @@ public class UserController {
 	private static final int INITIAL_PAGE = 0;
 	private static final int INITIAL_PAGE_SIZE = 6;
 	
-	private ArticleService articleService;
-	private TagService tagService;
-	private CommentService commentService;
+	private final ArticleService articleService;
+	private final TagService tagService;
+	private final CommentService commentService;
 	
 	@Autowired
 	public UserController(TagService tagService, ArticleService articleService, CommentService commentService) {
@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@GetMapping("/")
-	public String mainPage (@RequestParam("page") Optional <Integer> page, Model model) {
+	public String getArticlesInMainPage (@RequestParam("page") Optional <Integer> page, Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
 		
@@ -53,10 +53,9 @@ public class UserController {
 	}
 	
 	@GetMapping("/byTag/{tagName}")
-	public String mainPageByTag(@PathVariable String tagName, 
+	public String getArticlesByTagInMainPage(@PathVariable String tagName, 
 			@RequestParam("page") Optional <Integer> page, Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
-		
 		Tag tag = tagService.findTagByName(tagName);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
 		
@@ -83,7 +82,7 @@ public class UserController {
     }
     
     @PostMapping("/article/{articleId}/addComment")
-    public String addNewComment(@PathVariable Long articleId, @ModelAttribute("newComment") Comment comment) {
+    public String addComment(@PathVariable Long articleId, @ModelAttribute("newComment") Comment comment) {
     	commentService.addNewComment(articleId, comment);
     	return "redirect:/showArticle/" + articleId;
     }

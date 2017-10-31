@@ -20,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class TagServiceImpl implements TagService {
-	private TagRepository tagRepository;
-	private ArticleRepository articleRepository;
+	private final TagRepository tagRepository;
+	private final ArticleRepository articleRepository;
 
 	@Autowired
 	public TagServiceImpl(TagRepository tagRepository, ArticleRepository articleRepository) {

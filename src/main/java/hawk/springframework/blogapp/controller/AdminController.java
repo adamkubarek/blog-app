@@ -19,9 +19,9 @@ import hawk.springframework.blogapp.service.TagService;
 @RequestMapping("admin")
 public class AdminController {
 	
-	private ArticleService articleService;
-	private CommentService commentService;
-	private TagService tagService;
+	private final ArticleService articleService;
+	private final CommentService commentService;
+	private final TagService tagService;
 	
 	@Autowired
 	public AdminController(ArticleService articleService, CommentService commentService, TagService tagService) {
@@ -31,7 +31,7 @@ public class AdminController {
 	}
 	
 	@GetMapping("/")
-	public String adminPanel() {
+	public String getAdminPanel() {
 		return "admin/adminPanel";
 	}
 	

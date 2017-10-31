@@ -27,8 +27,8 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ArticleServiceImpl implements ArticleService{
-	private ArticleRepository articleRepository;
-	private TagRepository tagRepository;
+	private final ArticleRepository articleRepository;
+	private final TagRepository tagRepository;
 
 	@Autowired
 	public ArticleServiceImpl(ArticleRepository articleRepository, TagRepository tagRepository) {
