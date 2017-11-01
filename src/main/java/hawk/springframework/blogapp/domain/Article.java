@@ -16,6 +16,9 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +30,13 @@ public class Article {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@Size(max=100, message="Maksymalna długość tytułu to 100 znaków")
 	private String title;
 	private String shortDescription;
 	@Lob
+	@NotNull
+	@Size(min=201, message="Artykuł musi posiadać przynajmniej 201 znaków")
 	private String content;
 	private String author;
 	private String time;

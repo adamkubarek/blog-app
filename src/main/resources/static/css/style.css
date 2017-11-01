@@ -59,3 +59,8 @@ footer {
     resize: none;
     width: 100%;
 }
+
+.error-form {
+	color: red;
+	font-weight: bold;
+}

@@ -12,7 +12,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 				<form th:action="@{'/admin/addArticle'}" th:object="${newArticle}" method="post">
 					<input type="hidden" th:field="*{id}">
 					<div class="col-md-8">
-						<input type="text" required="required" placeholder="Tytuł" class="form-control" th:field="*{title}">
+						<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-form"></p>
+						<input type="text" class="form-control" required="required" placeholder="Tytuł"
+						  	th:field="*{title}" pattern=".*[^ ].*" max="100">
+						<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error-form"></p>
 						<textarea id="editor1" name="editor1" rows="50" required="required" th:field="*{content}">&lt;p&gt;Initial value.&lt;/p&gt;</textarea>
 						<button type="submit" class="btn btn-primary btn-lg">Dodaj artykuł</button>
 					</div>

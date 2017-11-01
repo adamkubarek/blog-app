@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +19,11 @@ public class Comment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@Size(min=1, max=30, message="Nazwa z przedziału 1-30 znaków")
 	private String userName;
+	@NotNull
+	@Size(min=10, max=200, message="Treść z przedziału 10-200 znaków")
 	private String content;
 	private String time;
 	@ManyToOne

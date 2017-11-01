@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,8 @@ public class Tag {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@Size(min=1, max=30, message="Długość nazwy z zakresu 1-30 znaków")
 	private String name;
 	@ManyToMany(mappedBy="tags")
 	private Set<Article> articles = new HashSet<>();

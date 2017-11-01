@@ -1,8 +1,11 @@
 package hawk.springframework.blogapp.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -64,7 +67,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("/addArticle")
-	public String saveArticle(@ModelAttribute("newArticle") Article article) {
+	public String saveArticle(@Valid @ModelAttribute("newArticle") Article article, BindingResult result) {
+		if(result.hasErrors()) {
+			return "admin/article/addArticle";
+		}
 		articleService.saveArticle(article);
 		return "redirect:/admin/showArticles";
 	}	
@@ -78,7 +84,10 @@ public class AdminController {
 	}
 	
 	@PostMapping("/tag/save")
-	public String saveTag(@ModelAttribute("newTag") Tag tag) {
+	public String saveTag(@Valid @ModelAttribute("newTag") Tag tag, BindingResult result) {
+		if(result.hasErrors()) {
+			return "admin/tag/showTags";
+		}
 		tagService.saveTag(tag);
 		return "redirect:/admin/showTags";
 	}
