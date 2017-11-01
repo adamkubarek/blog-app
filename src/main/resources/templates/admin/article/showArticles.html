@@ -32,10 +32,14 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 									<td th:text="${article.author}">author</td>
 									<td th:text="${article.time}">Time</td>
 									<td>
-										<a href="#" th:href="@{'/admin/article/'+${article.id}+'/update'}">Edytuj<span class="glyphicon glyphicon-pencil"></span></a>
+										<a href="#" th:href="@{'/admin/article/'+${article.id}+'/update'}">
+											Edytuj<span class="glyphicon glyphicon-pencil"></span>
+										</a>
 									</td>
 									<td>
-										<a href="#" th:href="@{'/admin/article/'+${article.id}+'/delete'}">Usuń<span class="glyphicon glyphicon-remove"></span></a>
+										<a href="#" th:href="@{'/admin/article/'+${article.id}+'/delete'}">
+											Usuń<span class="glyphicon glyphicon-remove"></span>
+										</a>
 									</td>
 							 	</tr>
 							 </table>

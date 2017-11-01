@@ -28,7 +28,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 							 		<td th:text="${tag.id}">id</td>
 							 		<td th:text="${tag.name}">nazwa</td>
 									<td>
-										<a href="#" th:href="@{'/admin/tag/'+${tag.id}+'/delete'}">Usuń<span class="glyphicon glyphicon-remove"></span></a>
+										<a href="#" th:href="@{'/admin/tag/'+${tag.id}+'/delete'}">
+											Usuń<span class="glyphicon glyphicon-remove"></span>
+										</a>
 									</td>
 							 	</tr>
 							 </table>
@@ -40,8 +42,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 		<div class="row">
 			<div class="col-md-2 pull-right">
 				<form th:action="@{'/admin/tag/save'}" th:object="${newTag}" method="post">
+				
 					<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-form"></p>
 					<input type="text" required="required" placeholder="#" th:field="*{name}" pattern=".*[^ ].*">
+					
 					<button type="submit" class="btn btn-primary">Dodaj tag <span class="glyphicon glyphicon-plus"></span></button>
 				</form>
 			</div>

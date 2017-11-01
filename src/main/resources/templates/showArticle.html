@@ -48,8 +48,12 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
   								
   							<p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error-form"></p>
   							<textarea class="form-control textarea-comment" placeholder="Nowy komentarz..."
-  								required="required" rows="3" th:field="*{content}" pattern=".*[^ ].*"></textarea>
-  							<button type="submit" class="btn btn-primary pull-right">Dodaj komentarz <span class="glyphicon glyphicon-plus"></span></button>
+  								required="required" rows="3" th:field="*{content}" pattern=".*[^ ].*">
+  							</textarea>
+  							
+  							<button type="submit" class="btn btn-primary pull-right">
+  								Dodaj komentarz <span class="glyphicon glyphicon-plus"></span>
+  							</button>
   						</form>
   					</div>
 				</div>	

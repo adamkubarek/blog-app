@@ -35,14 +35,16 @@ public class UserController {
 	private final CommentService commentService;
 	
 	@Autowired
-	public UserController(TagService tagService, ArticleService articleService, CommentService commentService) {
+	public UserController(TagService tagService, ArticleService articleService,
+			CommentService commentService) {
 		this.tagService = tagService;
 		this.articleService = articleService;
 		this.commentService = commentService;
 	}
 
 	@GetMapping("/")
-	public String getArticlesInMainPage (@RequestParam("page") Optional <Integer> page, Model model) {
+	public String getArticlesInMainPage (@RequestParam("page") Optional <Integer> page,
+			Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
 		
@@ -62,7 +64,8 @@ public class UserController {
 		Tag tag = tagService.findTagByName(tagName);
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
 		
-		Page <Article> articles = articleService.findArticlesByTags(tag, PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
+		Page <Article> articles = articleService.findArticlesByTags(tag,
+				PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
 		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber());
 		model.addAttribute("articles", articles);
 		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);
@@ -85,8 +88,8 @@ public class UserController {
     }
     
     @PostMapping("/article/{articleId}/addComment")
-    public String addComment(@Valid @ModelAttribute("newComment") Comment comment, BindingResult result,
-    		@PathVariable Long articleId, Model model) {
+    public String addComment(@Valid @ModelAttribute("newComment") Comment comment,
+    		BindingResult result, @PathVariable Long articleId, Model model) {
     	if(result.hasErrors()) {
     		model.addAttribute("article", articleService.findArticleById(articleId));
     		return "showArticle";

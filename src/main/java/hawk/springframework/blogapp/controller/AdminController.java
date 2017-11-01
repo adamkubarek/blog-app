@@ -27,7 +27,8 @@ public class AdminController {
 	private final TagService tagService;
 	
 	@Autowired
-	public AdminController(ArticleService articleService, CommentService commentService, TagService tagService) {
+	public AdminController(ArticleService articleService, CommentService commentService,
+			TagService tagService) {
 		this.articleService = articleService;
 		this.commentService = commentService;
 		this.tagService = tagService;
@@ -67,7 +68,8 @@ public class AdminController {
 	}
 	
 	@PostMapping("/addArticle")
-	public String saveArticle(@Valid @ModelAttribute("newArticle") Article article, BindingResult result) {
+	public String saveArticle(@Valid @ModelAttribute("newArticle") Article article,
+			BindingResult result) {
 		if(result.hasErrors()) {
 			return "admin/article/addArticle";
 		}

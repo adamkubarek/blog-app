@@ -34,7 +34,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 									<td th:text="${comment.content}">author</td>
 									<td th:text="${comment.time}">Time</td>
 									<td>
-										<a href="#" th:href="@{'/admin/comment/'+${comment.id}+'/delete'}">Usuń<span class="glyphicon glyphicon-remove"></span></a>
+										<a href="#" th:href="@{'/admin/comment/'+${comment.id}+'/delete'}">
+											Usuń<span class="glyphicon glyphicon-remove"></span>
+										</a>
 									</td>
 							 	</tr>
 							 </table>
