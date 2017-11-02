@@ -1,6 +1,14 @@
 # blog-app
 Prosta aplikacja bloga z wykorzystaniem frameworka Spring.
 ## Mikro dokumentacja
+### Instalacja
+Projekt należy sklonować i zaimportować w Eclipse albo InteliJ
+Projekt należy uruchomić jako 'Spring boot app', Spring Boot powinien sobie poradzić z konfiguracją (zawiera wszystkie 'startery' w pliku pom.xml). (Wymagany Maven) 
+Aplikacja zostanie uruchomiona pod adresem http://localhost:8080/, pod adresem http://localhost:8080/h2-console dostęp do bazy danych
+Aby dostać się do funkcjonalności admina należy się zalogować
+login:'admin'
+hasło:'password'
+
 ### Wykorzystane technologie
 * Spring Boot
 * Spring Security
