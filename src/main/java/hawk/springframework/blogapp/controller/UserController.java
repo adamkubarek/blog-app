@@ -47,8 +47,8 @@ public class UserController {
 			Model model) {
 		model.addAttribute("tags", tagService.getAllTags());
 		int evalPage = (page.orElse(0) < 1) ? INITIAL_PAGE : page.get()-1;
-		
 		Page<Article> articles = articleService.findAllPageable(PageRequest.of(evalPage, INITIAL_PAGE_SIZE));
+		
 		Pager pager = new Pager(articles.getTotalPages(), articles.getNumber());
 		model.addAttribute("articles", articles);
 		model.addAttribute("selectedPageSize", INITIAL_PAGE_SIZE);

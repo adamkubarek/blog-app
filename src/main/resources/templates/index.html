@@ -17,7 +17,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
           </div>
           
           <div class="row">
-            <div class="col-xs-6 col-lg-6" th:each="article : ${articles}">
+          
+            <div class="col-xs-12 col-lg-12" th:each="article : ${articles}">
               <h2 th:text="${article.title}">Header</h2>
               <p class="tags">Tagi : <span class="tag-custom" th:each="tag : ${article.tags}" th:text="'#'+${tag.name}+ ' '"></span></p>
               <p th:utext="${article.shortDescription}"></p>

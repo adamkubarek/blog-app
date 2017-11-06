@@ -61,12 +61,6 @@ public class AdminController {
 		return "admin/article/addArticle";
 	}
 	
-	@GetMapping("/article/{articleId}/delete")
-	public String deleteArticle(@PathVariable Long articleId) {
-		articleService.deleteArticle(articleId);
-		return "redirect:/admin/showArticles";
-	}
-	
 	@PostMapping("/addArticle")
 	public String saveArticle(@Valid @ModelAttribute("newArticle") Article article,
 			BindingResult result) {
@@ -76,6 +70,12 @@ public class AdminController {
 		articleService.saveArticle(article);
 		return "redirect:/admin/showArticles";
 	}	
+	
+	@GetMapping("/article/{articleId}/delete")
+	public String deleteArticle(@PathVariable Long articleId) {
+		articleService.deleteArticle(articleId);
+		return "redirect:/admin/showArticles";
+	}
 	
 	@GetMapping("/showTags")
 	public String showTags(Model model) {
