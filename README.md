@@ -1,24 +1,28 @@
-# blog-app
-Prosta aplikacja bloga z wykorzystaniem frameworka Spring.
+# Blog-app
+Aplikacja bloga stworzona przy użyciu frameworka Spring.
 ## Mikro dokumentacja
 ### Instalacja
-Projekt należy sklonować i zaimportować w Eclipse albo InteliJ
-Projekt należy uruchomić jako 'Spring boot app', Spring Boot powinien sobie poradzić z konfiguracją (zawiera wszystkie 'startery' w pliku pom.xml). (Wymagany Maven) 
-Aplikacja zostanie uruchomiona pod adresem http://localhost:8080/, pod adresem http://localhost:8080/h2-console dostęp do bazy danych
-Aby dostać się do funkcjonalności admina należy się zalogować
-* login:'admin'
-* hasło:'password'
+Projekt należy sklonować i zaimportować w IDE. Projekt można uruchomić na kilka sposobów: (Wymagany maven)
+* Konsola: mvn spring-boot:run
+* PPM -> run As -> Spring boot app
+* PPM -> run As -> Maven Build -> Goals : 'spring-boot:run'
+
+Aplikacja zostanie uruchomiona pod adresem localhost:8080, pod adresem localhost:8080/h2-console dostęp do bazy danych. 
+Dostęp do funkcjonalności admina po zalogowaniu :  
+* login : 'admin'
+* hasło : 'password'
 
 ### Wykorzystane technologie
-* Spring Boot
+* Spring Boot 2.0.0.M4
 * Spring Security
 * Spring Data
-* Hibernate
+* Hibernate 5.2.10.Final
+* Hibernate Validator 5.4.1.Final
 * H2 Database
 * Thymeleaf
-* HTML
-* CSS
-* Bootstrap
+* HTML5
+* CSS3
+* Bootstrap 3.3.7
 * JavaScript(CkEditor)
 ### Use Case
 ![alt text](https://github.com/adamkubarek/blog-app/blob/master/UseCaseDiagram.jpg)
