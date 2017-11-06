@@ -32,10 +32,11 @@ public class Article {
 	@NotNull
 	@Size(max=100, message="Maksymalna długość tytułu to 100 znaków")
 	private String title;
+	@Lob
 	private String shortDescription;
 	@Lob
 	@NotNull
-	@Size(min=201, message="Artykuł musi posiadać przynajmniej 201 znaków")
+	@Size(min=100, message="Artykuł musi posiadać przynajmniej 100 znaków")
 	private String content;
 	private String author;
 	private String time;
@@ -49,6 +50,14 @@ public class Article {
 	private Set<Long> tagsId = new HashSet<>();
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="article")
 	private List<Comment> comments = new ArrayList<>();
+	
+	public void generateShortDescription() {
+		if(content.length() >= 500) {
+			setShortDescription(content.substring(0, 499)+"..."); 
+		} else {
+			setShortDescription(getContent()); 
+		}
+	}
 	
 	public void addNewComment(Comment comment) {
 		this.comments.add(comment);

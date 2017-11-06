@@ -71,7 +71,7 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 				+ " jest projekt parasolowy BOINC@home, który obejmuje kilkadziesiąt tego typu projektów co SETI@home, zajmujących się"
 				+ " zagadnieniami z wielu dziedzin nauki, nie tylko ścisłych.Obecnie algorytmy równoległe mogą być wykorzystywane na zwykłych domowych"
 				+ " komputerach, ponieważ ogromna większość z nich posiada procesory wielordzeniowe, które w uproszczeniu są połączeniem kilku procesorów w jeden.");
-		firstArticle.setShortDescription(firstArticle.getContent().substring(0,200)+"...");
+		firstArticle.generateShortDescription();
 		firstArticle.setTitle("Sposoby rozwiązywania problemów");
 		firstArticle.setTime(CurrentTime.get());
 		Set <Tag> tags = new HashSet<>();
@@ -87,7 +87,7 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 				+ " two 106-metre-tall SpaceX rockets with construction materials will go to Mars, followed by two more cargo"
 				+ " rockets in 2024. In that same year, two flights of 100 passengers each will go to Mars to build a city using"
 				+ " the cargo which will have been delivered.");
-		secondArticle.setShortDescription(secondArticle.getContent().substring(0,200)+"...");
+		secondArticle.generateShortDescription();
 		secondArticle.setTitle("Finding Water on Other Planets");
 		secondArticle.setTime(CurrentTime.get());
 		Set <Tag> tags2 = new HashSet<>();
@@ -108,7 +108,7 @@ public class SampleData implements ApplicationListener <ContextRefreshedEvent> {
 				+ " Sirloin bacon pig ribeye corned beef swine. Shank cow filet mignon short ribs alcatra. Pancetta cow corned beef jerky, cupim burgdoggen turducken "
 				+ "beef prosciutto strip steak doner. Jerky short loin biltong porchetta strip steak swine. Shankle swine tenderloin boudin, tri-tip pig andouille "
 				+ "brisket. Andouille ham kevin, turducken ribeye pork chop short ribs kielbasa leberkas cupim. Leberkas ribeye pork, spare ribs shoulder alcatra filet mignon.");
-		thirdArticle.setShortDescription(thirdArticle.getContent().substring(0,200)+"...");
+		thirdArticle.generateShortDescription();
 		thirdArticle.setTitle("Becon ipsum");
 		thirdArticle.setTime(CurrentTime.get());
 		Set <Tag> tags3 = new HashSet<>();

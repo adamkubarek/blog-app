@@ -82,15 +82,15 @@ public class ArticleServiceImpl implements ArticleService{
 		List <Tag> chosenTags = new ArrayList<>();
 		Set <Tag> convertedChosenTags = new HashSet<>();
 		chosenTags = (List<Tag>) tagRepository.findAllById(article.getTagsId());
-		for (Tag tag : chosenTags) {
-			convertedChosenTags.add(tag);
+		for (Tag chosenTag : chosenTags) {
+			convertedChosenTags.add(chosenTag);
 		}
 		
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    String authorName = auth.getName();
 	    
 	    article.setAuthor(authorName);
-	    article.setShortDescription(article.getContent().substring(0,200)+"...");
+	    article.generateShortDescription();
 		article.setTags(convertedChosenTags);
 		article.setTime(CurrentTime.get());
 		
